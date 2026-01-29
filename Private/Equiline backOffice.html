@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+
+    <title>Back Office</title>
+</head>
+
+<body>
+
+    <!-- NAVBAR
+
+    FORM TO ADD PRODUCTS -->
+
+    <div class="container mt-3">
+
+        <form class="col-6">
+            <div class="mb-1">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control form-control-sm" id="name">
+            </div>
+
+            <div class="mb-1">
+                <label for="description" class="form-label">description</label>
+                <input type="text" class="form-control form-control-sm" id="description">
+            </div>
+
+            <div class="mb-1">
+                <label for="brand" class="form-label">brand</label>
+                <input type="text" class="form-control form-control-sm" id="brand">
+            </div>
+
+            <div class="mb-1">
+                <label for="imageUrl" class="form-label">IMG url...</label>
+                <input type="text" class="form-control form-control-sm" id="imageUrl">
+            </div>
+
+            <div class="mb-1">
+                <label for="price" class="form-label">price</label>
+                <input type="number" class="form-control form-control-sm" id="price">
+            </div>
+
+            <button type="submit" id="applyBtn" class="btn btn-primary">Apply</button>
+        </form>
+    </div>
+
+
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Price</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+
+                </tr>
+            </thead>
+
+
+            <tbody id="tabBody">
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <script src="Equiline backOffice.js"></script>
+
+</body>
+
+</html>

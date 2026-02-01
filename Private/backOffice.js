@@ -79,7 +79,7 @@ applyBtn.addEventListener('click', async (event) => {
         const response = await fetch('https://striveschool-api.herokuapp.com/api/product', {
 
             headers: {
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODdiNGEyYjQwMTRhZjAwMTVmMGM1NjAiLCJpYXQiOjE3Njk0NjIwMDQsImV4cCI6MTc3MDY3MTYwNH0.d3NY2TX5RXE3ivlAF9hE304tVCaGi6PVb9dYzv2rH0A",
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODdiNGEyYjQwMTRhZjAwMTVmMGM1NjAiLCJpYXQiOjE3Njk0NjIwMDQsImV4cCI6MTc3MDY3MTYwNH0.d3NY2TX5RXE3ivlAF9hE304tVCaGi6PVb9dYzv2rH0A".
 
                 "Content-Type": "application/json"
             },
@@ -128,12 +128,11 @@ function addToList(product) {
     deleteBtn.addEventListener('click', async (event) => {
         try {
             const response = await fetch(
-                'https://striveschool-api.herokuapp.com/api/product',
+                `https://striveschool-api.herokuapp.com/api//${product._id}`,
                 {
                     method: "DELETE",
                     headers: {
-                        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODdiNGEyYjQwMTRhZjAwMTVmMGM1NjAiLCJpYXQiOjE3Njk0NjIwMDQsImV4cCI6MTc3MDY3MTYwNH0.d3NY2TX5RXE3ivlAF9hE304tVCaGi6PVb9dYzv2rH0A"
-
+                        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODdiNGEyYjQwMTRhZjAwMTVmMGM1NjAiLCJpYXQiOjE3Njk0NjIwMDQsImV4cCI6MTc3MDY3MTYwNH0.d3NY2TX5RXE3ivlAF9hE304tVCaGi6PVb9dYzv2rH0A".
                         "Content-Type": "application/json"
                     }
 
@@ -156,7 +155,7 @@ function addToList(product) {
     modifyBtn.addEventListener('click', async (event) => {
         try {
             const response = await fetch(
-                'https://striveschool-api.herokuapp.com/api/product',
+                `https://striveschool-api.herokuapp.com/api//${product._id}`,
                 {
                     method: "PUT",
                     headers: {

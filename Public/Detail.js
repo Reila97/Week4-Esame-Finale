@@ -2,7 +2,7 @@ const params = new URLSearchParams(window.location.search);
 console.log(params)
 const prodId = params.get('id')
 
-const detailContainer= document.querySelector('#detailContainer')
+const detailContainer = document.querySelector('#detailContainer')
 
 
 
@@ -12,18 +12,19 @@ fetch("https://striveschool-api.herokuapp.com/api/product/" + prodId, {
     }
 })
     .then(res => res.json())
-    .then(data => { 
+    .then(data => {
         console.log(data)
+        const product = data
         detailContainer.innerHTML += `
         <div class="col">
                 <div class="card">
-                    <img src=" ${product.imageUrl} " class="card-img-top" alt="...">
+                    <img src=" ${data.imageUrl} " class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title"> ${product.brand} </h5>
-                            <h3 class="card-title"> ${product.name} </h3>
-                            <p class="card-text"> ${product.description} </p>
-                            <p class="card-text"> ${product.price} </p>
-                            <a href="Detail.html?id=${product._id}" class="btn btn-primary">Details</a>
+                            <h5 class="card-title"> ${data.brand} </h5>
+                            <h3 class="card-title"> ${data.name} </h3>
+                            <p class="card-text"> ${data.description} </p>
+                            <p class="card-text"> ${data.price} </p>
+                            <a href="Detail.html?id=${data._id}" class="btn btn-primary">Details</a>
                         </div>
                 </div>
             </div>

@@ -19,7 +19,7 @@ fetch("https://striveschool-api.herokuapp.com/api/product/", {
     .then(res => res.json())
     .then(data => {
         const card = data.map(product => `
-            
+
             <div class="col">
                 <div class="card">
                     <img src=" ${product.imageUrl} " class="card-img-top" alt="...">
@@ -29,9 +29,6 @@ fetch("https://striveschool-api.herokuapp.com/api/product/", {
                             <p class="card-text"> ${product.description} </p>
                             <p class="card-text"> ${product.price} </p>
                             <a href="/Detail.html?id=${product._id}" class="btn btn-primary">Details</a>
-                            
-                            <button class="btn btn-primary" id="addToCartBtn"> add to cart </button>
-                            
                         </div>
                 </div>
             </div>
@@ -41,12 +38,4 @@ fetch("https://striveschool-api.herokuapp.com/api/product/", {
 
 
 
-//FUNZIONI
-
-
-// function previewText(text, maxLength = 80) {
-//             return text.length > maxLength
-//             ? text.slice(0, maxLength) + '...'
-//             : text;
-//             }
 

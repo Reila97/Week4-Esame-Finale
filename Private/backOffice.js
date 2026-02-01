@@ -122,7 +122,7 @@ function addToList(product) {
         </td>
     `;
 
-    // Delete: rimuove riga e aggiorna arrayProducts e localStorage
+    // DELETE: rimuove riga e aggiorna arrayProducts e localStorage
     const deleteBtn = trList.querySelector('.deleteBtn');
 
     deleteBtn.addEventListener('click', async (event) => {
@@ -130,26 +130,47 @@ function addToList(product) {
             const response = await fetch(
                 'https://striveschool-api.herokuapp.com/api/product',
                 {
+                    method: "DELETE",
                     headers: {
                         "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODdiNGEyYjQwMTRhZjAwMTVmMGM1NjAiLCJpYXQiOjE3Njk0NjIwMDQsImV4cCI6MTc3MDY3MTYwNH0.d3NY2TX5RXE3ivlAF9hE304tVCaGi6PVb9dYzv2rH0A"
-                    }
-                });
 
-            arrayProducts = arrayProducts.filter((p => p._id !== product_id))
+                        "Content-Type": "application/json"
+                    }
+
+                }
+            );
+            arrayProducts = arrayProducts.filter((p => p._id !== product._id))
             saveProd();
             trList.remove();
-    } catch (error) {
-        console.error("Errore nel DELETE:", error)
-    }
+        } catch (error) {
+            console.error("Errore nel DELETE:", error)
+        }
+    });
 
-        
-});
-
-tabBody.appendChild(trList);
+    tabBody.appendChild(trList);
 
 
     //tasto modifica
 
+    const modifyBtn = trList.querySelector('.modifyBtn');
+    modifyBtn.addEventListener('click', async (event) => {
+        try {
+            const response = await fetch(
+                'https://striveschool-api.herokuapp.com/api/product',
+                {
+                    method: "PUT",
+                    headers: {
+                        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODdiNGEyYjQwMTRhZjAwMTVmMGM1NjAiLCJpYXQiOjE3Njk0NjIwMDQsImV4cCI6MTc3MDY3MTYwNH0.d3NY2TX5RXE3ivlAF9hE304tVCaGi6PVb9dYzv2rH0A"
+                    }
 
+                }
+            );
+            const prodottoModificato = await response.json();
+
+
+        } catch (error) {
+            console.error("Errore nel PUT:", error)
+        }
+    });
 }
 

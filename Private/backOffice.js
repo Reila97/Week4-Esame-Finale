@@ -30,7 +30,7 @@ function loadProd() {
 
 loadProd()
 
-// READ 
+// ====== READ ======
 
 async function readProducts() {
     try {
@@ -40,12 +40,13 @@ async function readProducts() {
                 headers: {
                     "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODdiNGEyYjQwMTRhZjAwMTVmMGM1NjAiLCJpYXQiOjE3Njk0NjIwMDQsImV4cCI6MTc3MDY3MTYwNH0.d3NY2TX5RXE3ivlAF9hE304tVCaGi6PVb9dYzv2rH0A"
                 }
-            }
-        );
+            });
+
         const products = await response.json();
+        tabBody.innerHTML = "";
 
         arrayProducts = products;
-        tabBody.innerHTML = "";
+
         arrayProducts.forEach(addToList);
         saveProd();
     } catch (error) {
@@ -55,15 +56,7 @@ async function readProducts() {
 readProducts()
 
 
-// DELETE
-
-
-
-
-
-
-
-
+// UPDATE
 
 applyBtn.addEventListener('click', async (event) => {
     event.preventDefault();
@@ -72,14 +65,14 @@ applyBtn.addEventListener('click', async (event) => {
         description: descriptionInput.value,
         brand: brandInput.value,
         imageUrl: imageUrlInput.value,
-        price: priceInput.value
+        price: Number(priceInput.value)
     };
 
     try {
         const response = await fetch('https://striveschool-api.herokuapp.com/api/product', {
 
             headers: {
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODdiNGEyYjQwMTRhZjAwMTVmMGM1NjAiLCJpYXQiOjE3Njk0NjIwMDQsImV4cCI6MTc3MDY3MTYwNH0.d3NY2TX5RXE3ivlAF9hE304tVCaGi6PVb9dYzv2rH0A".
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODdiNGEyYjQwMTRhZjAwMTVmMGM1NjAiLCJpYXQiOjE3Njk0NjIwMDQsImV4cCI6MTc3MDY3MTYwNH0.d3NY2TX5RXE3ivlAF9hE304tVCaGi6PVb9dYzv2rH0A",
 
                 "Content-Type": "application/json"
             },
@@ -128,21 +121,22 @@ function addToList(product) {
     deleteBtn.addEventListener('click', async (event) => {
         try {
             const response = await fetch(
-                `https://striveschool-api.herokuapp.com/api//${product._id}`,
-                {
-                    method: "DELETE",
-                    headers: {
-                        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODdiNGEyYjQwMTRhZjAwMTVmMGM1NjAiLCJpYXQiOjE3Njk0NjIwMDQsImV4cCI6MTc3MDY3MTYwNH0.d3NY2TX5RXE3ivlAF9hE304tVCaGi6PVb9dYzv2rH0A".
-                        "Content-Type": "application/json"
-                    }
+                `striveschool-api.herokuapp.com/api/product/${product._id}`, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODdiNGEyYjQwMTRhZjAwMTVmMGM1NjAiLCJpYXQiOjE3Njk0NjIwMDQsImV4cCI6MTc3MDY3MTYwNH0.d3NY2TX5RXE3ivlAF9hE304tVCaGi6PVb9dYzv2rH0A",
 
-                }
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(body),
+            }
             );
             arrayProducts = arrayProducts.filter((p => p._id !== product._id))
             saveProd();
             trList.remove();
+            
         } catch (error) {
-            console.error("Errore nel DELETE:", error)
+            cconsole.error("Errore DELETE:", error)
         }
     });
 
@@ -155,7 +149,7 @@ function addToList(product) {
     modifyBtn.addEventListener('click', async (event) => {
         try {
             const response = await fetch(
-                `https://striveschool-api.herokuapp.com/api//${product._id}`,
+                `striveschool-api.herokuapp.com/api/product/${product._id}`,
                 {
                     method: "PUT",
                     headers: {
